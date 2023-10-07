@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, deleteUser, insertUser } from '@/services/api';
-import { Table, Button, Form, Modal , Input} from 'antd'
+import { Table, Button, Form, Modal , Input, Popconfirm} from 'antd'
 
 const UserPage = () => {
   const [form] = Form.useForm();
@@ -60,7 +60,9 @@ const UserPage = () => {
       title: '删除',
       key: 'delete',
       dataIndex: 'delete',
-      render: (text, record) => <Button type="link" onClick={() => deleteUsers(record)}>删除</Button>
+      render: (text, record) => <Popconfirm title="确认删除？" onConfirm={() => deleteUsers(record)}>
+        <Button type="link">删除</Button>
+      </Popconfirm>
     }
   ]
   return (
